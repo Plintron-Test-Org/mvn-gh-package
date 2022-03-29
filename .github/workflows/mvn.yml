@@ -46,7 +46,9 @@ jobs:
            project: "Demo Project"
            issuetype: Bug
            summary: |
-              Build failed for  the commit ${{ github.event.head_commit.message }} for ${{ github.repository }}
+              #Build failed for  the commit ${{ github.event.head_commit.message }} for ${{ github.repository }}
+              echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event.after }})
+
            description: |
               Compare branch
            
