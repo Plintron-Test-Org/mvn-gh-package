@@ -48,7 +48,7 @@ jobs:
            project: "Demo Project"
            issuetype: Bug
            summary: |
-              "${{ env.FOO }}"
+              github.push.head_commit.message
            description: |
               Compare branch
            
