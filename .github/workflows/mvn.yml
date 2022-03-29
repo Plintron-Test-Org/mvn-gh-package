@@ -20,7 +20,9 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-
+    - name: commit message
+      run: git log -1 --pretty=format:"%s" >> $GITHUB_COMMIT_MESSAGE
+      
   create_issue:
     needs: [build]
     if: always() && (needs.build.result == 'failure')
@@ -46,7 +48,7 @@ jobs:
            project: "Demo Project"
            issuetype: Bug
            summary: |
-              git log -1 --pretty=format:"%s"
+                ${{ env.$GITHUB_COMMIT_MESSAGE }}  
            description: |
               Compare branch
            
