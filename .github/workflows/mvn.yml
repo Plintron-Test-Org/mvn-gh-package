@@ -46,7 +46,7 @@ jobs:
            project: "Demo Project"
            issuetype: Bug
            summary: |
-              Build failed for the commit ${{ github.event.head_commit.message }} for ${{ github.repository }}
+              Build failed for  the commit ${{ github.event.head_commit.message }} for ${{ github.repository }}
            description: |
               Compare branch
            
