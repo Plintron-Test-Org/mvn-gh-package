@@ -39,11 +39,6 @@ jobs:
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
           JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-      
-      - name: Get Commit Message
-        run: |
-          MSG=$(git log --format=%B -n 1 ${{github.event.after}})
-          echo "::set-env name=COMMIT_MESSAGE::${MSG}"
 
       - name: Create
         uses: atlassian/gajira-create@master
@@ -51,7 +46,7 @@ jobs:
            project: "Demo Project"
            issuetype: Bug
            summary: |
-              Build failed for the commit ${{ env.COMMIT_MESSAGE }} for ${{ github.repository }}
+              Build failed for the commit ${{ github.event.head_commit.message }} for ${{ github.repository }}
            description: |
               Compare branch
            
